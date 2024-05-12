@@ -1,9 +1,19 @@
-autoload -Uz compinfo vcs_info
+autoload -Uz compinit vcs_info
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' actionformats 'on %F{red} %b%f ' 
+
+# @todo: checking for changes in the repository
+if [ -v CZTHEME_GIT_CHANGES ]; then
+	echo $CZTHEME_GIT_CHANGES
+	zstyle ':vcs_info:*' check-for-changes true
+	zstyle ':vcs_info:git:*' formats 'on %F{red} %b%f %F{yellow}[%c%u]%f '
+else
+	zstyle ':vcs_info:git:*' formats 'on %F{red} %b%f ' 
+fi
+
 precmd() {
   vcs_info
 }
 
 setopt prompt_subst
-PROMPT='%F{green}󰁕%f %c ${vcs_info_msg_0_}%# '
+PROMPT='%F{green}󰁕%f %c %# '
+RPROMPT='${vcs_info_msg_0_}'
