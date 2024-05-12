@@ -1,3 +1,9 @@
+#####################################################################
+# cezshanne - a minimal, yet elegant zsh theme.
+# @author: William Gambardella <github.com/gambardellawill>
+# @created: May 10, 2024
+#####################################################################
+
 autoload -Uz compinit vcs_info
 zstyle ':vcs_info:*' enable git
 
